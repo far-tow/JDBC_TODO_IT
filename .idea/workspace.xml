@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa50d0e7-e104-4207-ad77-bcf750684b0f" name="Changes" comment="Added README.md picture">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="fa50d0e7-e104-4207-ad77-bcf750684b0f" name="Changes" comment="People-part is done!">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,13 +108,46 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1671731345216</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="README.md updated">
+      <created>1671731446426</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1671731446426</updated>
+    </task>
+    <task id="LOCAL−00005" summary="update">
+      <created>1671731558763</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1671731558763</updated>
+    </task>
+    <task id="LOCAL−00006" summary="People-part is done!">
+      <created>1671737999462</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1671737999462</updated>
+    </task>
+    <task id="LOCAL−00007" summary="People-part is done!">
+      <created>1671738189711</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1671738189711</updated>
+    </task>
+    <task id="LOCAL−00008" summary="People-part is done!">
+      <created>1671738240509</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1671738240509</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit." />
     <MESSAGE value="Added README.md" />
     <MESSAGE value="Added README.md picture" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added README.md picture" />
+    <MESSAGE value="README.md updated" />
+    <MESSAGE value="update" />
+    <MESSAGE value="People-part is done!" />
+    <option name="LAST_COMMIT_MESSAGE" value="People-part is done!" />
   </component>
 </project>
