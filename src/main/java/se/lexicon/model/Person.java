@@ -55,5 +55,4 @@ public class Person {
                 ", LastName = '" + lastName + '\'' +
                 '}';
     }
-
 }
