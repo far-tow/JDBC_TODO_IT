@@ -9,7 +9,6 @@ import java.util.Collection;
 public class App {
 
 
-
     public static void main(String[] args) {
 
         PeopleDao pd = new PeopleDaoImp();
@@ -20,17 +19,26 @@ public class App {
         System.out.println("person = " + person);*/
 
         // findAll
-       /*Collection<Person> all = pd.findAll();
-        all.forEach(System.out::println);*/
-
+        Collection<Person> all = pd.findAll();
+        all.forEach(System.out::println);
 
         //findById
        /* Person  person = pd.findById(5);
         System.out.println(person);*/
 
         //findByName
-        Collection<Person> names= pd.findByName("test");
-        names.forEach(System.out::println);
+       /* Collection<Person> names= pd.findByName("test");
+        names.forEach(System.out::println);*/
+
+        //UPDATE
+        Person person = pd.findById(6);
+        person.setFirstName("TestUpdate");
+        person.setLastName("Updatesson");
+        pd.update(person);
+
+        //DELETE
+        //boolean del = pd.deleteById(3);
+
 
     }
 }

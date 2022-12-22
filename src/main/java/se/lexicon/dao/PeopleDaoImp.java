@@ -1,6 +1,5 @@
 package se.lexicon.dao;
 
-import se.lexicon.dao.PeopleDao;
 import se.lexicon.dao.dataBase.DbConnection;
 import se.lexicon.exeptions.DBConnectionException;
 import se.lexicon.model.Person;
@@ -8,7 +7,7 @@ import se.lexicon.model.Person;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
 
 public class PeopleDaoImp implements PeopleDao {
 
@@ -111,10 +110,62 @@ public class PeopleDaoImp implements PeopleDao {
     }
 
     public Person update(Person person) {
-        return null;
+        String query = "UPDATE person SET first_name = ?, last_name = ? WHERE person_id = ?";
+        int rowsAffected = 0;
+
+        try (
+                Connection connection = DbConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            preparedStatement.setString(1, person.getFirstName());
+            preparedStatement.setString(2, person.getLastName());
+            preparedStatement.setInt(3, person.getPersonId());
+
+            /*ToDo: Check if person exist first then execute query.  How?
+            @author: farhad - @Date: 2022-12-22 - @Time: 20:37
+            */
+            rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println((rowsAffected == 1) ?  "\n" + person + " Updated successfully!" : person + " did not updated!");
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys();) {
+
+                if (rowsAffected >= 1) {
+                    System.out.println(rowsAffected + " post updated!");
+                }
+            }
+
+        } catch (DBConnectionException | SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return person;
     }
 
     public boolean deleteById(int personId) {
-        return false;
+        String query = "DELETE FROM person WHERE person_id = ?";
+        int rowsAffected = 0;
+        boolean del = false;
+
+        try (
+                Connection connection = DbConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            preparedStatement.setInt(1, personId);
+            rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println((rowsAffected == 1) ? "Person id: " + personId + " Deleted successfully" :  "Person id: " + personId + " does not exist!");
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys();) {
+
+                if (rowsAffected >= 1) {
+                    del = true;
+                    System.out.println(rowsAffected + " post deleted!");
+                }
+            }
+
+        } catch (DBConnectionException | SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return del;
     }
 }

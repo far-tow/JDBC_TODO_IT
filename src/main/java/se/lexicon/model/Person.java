@@ -49,10 +49,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "personId=" + personId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+        return "Person { " +
+                "personId = " + personId +
+                ", FirstName = '" + firstName + '\'' +
+                ", LastName = '" + lastName + '\'' +
                 '}';
     }
 }
