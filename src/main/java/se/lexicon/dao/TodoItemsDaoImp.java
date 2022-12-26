@@ -219,7 +219,52 @@ public class TodoItemsDaoImp implements TodoItemsDao {
     }
 
     public Todo update(Todo todo) {
-        return null;
+        String query = "update todo_item set title = ?, description = ?, deadline = ?, " +
+                "done = ?, assignee_id = ? where todo_id = ?";
+        int rowsAffected = 0;
+
+        try (
+                Connection connection = DbConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            preparedStatement.setString(1, todo.getTitle());
+            preparedStatement.setString(2, todo.getDescription());
+            preparedStatement.setDate(3, Date.valueOf(todo.getDeadLine()));
+            preparedStatement.setBoolean(4, todo.isDone());
+            preparedStatement.setInt(5, todo.getAssigneeId());
+            preparedStatement.setInt(6, todo.getTodoId());
+
+
+            //Check if person already exist first!
+           try (
+                    PreparedStatement ps = connection.prepareStatement("select count(*) as count from todo_item where todo_id= ?");
+            ) {
+                ps.setInt(1, todo.getTodoId());
+
+                ResultSet resultSet1 = ps.executeQuery();
+
+                int isExist;
+                if (resultSet1.next()) {
+                    isExist = resultSet1.getInt("count");
+                    if (isExist == 0) throw new RuntimeException("Item " + todo.getTodoId() + " ,does Not exists");
+                }
+            }
+            //if not exist then add it.
+            rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println((rowsAffected == 1) ?  "\n" + todo + " Updated successfully!" : todo + " did not updated!");
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys();) {
+
+                if (rowsAffected >= 1) {
+                    System.out.println(rowsAffected + " post updated!");
+                }
+            }
+
+        } catch (DBConnectionException | SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return todo;
     }
 
     public boolean deleteById(int id) {

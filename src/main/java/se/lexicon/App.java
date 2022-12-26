@@ -70,9 +70,11 @@ public class App {
         users.forEach(System.out::println);*/
 
         //FIND BY UNASSAGNED
-        Collection<Todo> unassignedTodoItems = to_do.findByUnassignedTodoItems();
-        unassignedTodoItems.forEach(System.out::println);
+        /*Collection<Todo> unassignedTodoItems = to_do.findByUnassignedTodoItems();
+        unassignedTodoItems.forEach(System.out::println);*/
 
+        //UPDATE
+        Todo Update = to_do.update(new Todo(9,"Update title", "update description test",LocalDate.of(2023,2,25),false,7));
 
 
 
