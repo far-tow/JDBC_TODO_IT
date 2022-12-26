@@ -195,7 +195,27 @@ public class TodoItemsDaoImp implements TodoItemsDao {
     }
 
     public Collection<Todo> findByUnassignedTodoItems() {
-        return null;
+        String query = "select * from todo_item where assignee_id is null";
+        Collection<Todo> items = new ArrayList<>();
+        try {
+            Connection connection = DbConnection.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                items.add(new Todo(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(4).toLocalDate(),
+                        resultSet.getBoolean(5),
+                        resultSet.getInt(6)
+                ));
+            }
+        } catch (DBConnectionException | SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return items;
     }
 
     public Todo update(Todo todo) {

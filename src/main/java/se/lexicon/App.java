@@ -44,7 +44,7 @@ public class App {
         // _________________ TO DO ______________//
 
         //CREATE
-        /*Todo todo = new Todo(3, "Design pattern", "Pattern for new app", LocalDate.of(2023,1, 28), false,2);
+       /* Todo todo = new Todo(3, "Design pattern", "Pattern for new app", LocalDate.of(2023,1, 28), false,2);
         todo = to_do.create(todo);
         System.out.println("todo = " + todo);*/
 
@@ -65,9 +65,15 @@ public class App {
         assignee.forEach(System.out::println);*/
 
         //FIND BY ASSAGNEE (PERSON)
-        Person person = pd.findById(7);
+        /*Person person = pd.findById(7);
         Collection<Todo> users = to_do.findByAssignee(person);
-        users.forEach(System.out::println);
+        users.forEach(System.out::println);*/
+
+        //FIND BY UNASSAGNED
+        Collection<Todo> unassignedTodoItems = to_do.findByUnassignedTodoItems();
+        unassignedTodoItems.forEach(System.out::println);
+
+
 
 
 
