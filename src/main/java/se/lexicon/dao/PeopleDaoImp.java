@@ -23,14 +23,29 @@ public class PeopleDaoImp implements PeopleDao {
             preparedStatement.setInt(1, person.getPersonId());
             preparedStatement.setString(2, person.getFirstName());
             preparedStatement.setString(3, person.getLastName());
+            //Check if person already exist first!
+            try (
+                    PreparedStatement ps = connection.prepareStatement("select count(*) as count from person where person_id= ?");
+            ) {
+                ps.setInt(1, person.getPersonId());
+
+                ResultSet resultSet1 = ps.executeQuery();
+
+                int isExist;
+                if (resultSet1.next()) {
+                    isExist = resultSet1.getInt("count");
+                    if (isExist > 0) throw new RuntimeException(person.getFirstName() + " " + person.getLastName() + " ,with person id " +person.getPersonId() + " ,already exists");
+                }
+            }
+            //if not exist then add it.
             int result = preparedStatement.executeUpdate();
-            System.out.println((result == 1) ? "Added successfully" : "Not added!");
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys();) {
 
                 if (resultSet.next()) {
                     addedPerson = new Person(resultSet.getInt(1), person.getFirstName(), person.getLastName());
                 }
                 person = addedPerson;
+                System.out.println((result == 1) ? person + "\n" + " Added successfully" : "Not added!");
             }
 
         } catch (DBConnectionException | SQLException e) {
@@ -121,9 +136,21 @@ public class PeopleDaoImp implements PeopleDao {
             preparedStatement.setString(2, person.getLastName());
             preparedStatement.setInt(3, person.getPersonId());
 
-            /*ToDo: Check if person exist first then execute query.  How?
-            @author: farhad - @Date: 2022-12-22 - @Time: 20:37
-            */
+            //Check if person already exist first!
+            try (
+                    PreparedStatement ps = connection.prepareStatement("select count(*) as count from person where person_id= ?");
+            ) {
+                ps.setInt(1, person.getPersonId());
+
+                ResultSet resultSet1 = ps.executeQuery();
+
+                int isExist;
+                if (resultSet1.next()) {
+                    isExist = resultSet1.getInt("count");
+                    if (isExist == 0) throw new RuntimeException(person.getFirstName() + " " + person.getLastName() + " ,with person id " +person.getPersonId() + " ,does Not exists");
+                }
+            }
+            //if not exist then add it.
             rowsAffected = preparedStatement.executeUpdate();
 
             System.out.println((rowsAffected == 1) ?  "\n" + person + " Updated successfully!" : person + " did not updated!");

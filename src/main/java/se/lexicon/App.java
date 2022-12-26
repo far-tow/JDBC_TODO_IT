@@ -19,9 +19,8 @@ public class App {
         TodoItemsDao to_do = new TodoItemsDaoImp();
 // _________________ PERSON ______________//
         // CREATE
-        /*Person person = new Person (6,"Mehrdad", "Javan");
-        pd.create(person);
-        System.out.println("person = " + person);*/
+       /* Person person = new Person (7,"Mehrdad", "Javan");
+        pd.create(person);*/
 
         // findAll
         /*Collection<Person> all = pd.findAll();
@@ -36,10 +35,8 @@ public class App {
         names.forEach(System.out::println);*/
 
         //UPDATE
-       /* Person person = pd.findById(6);
-        person.setFirstName("TestUpdate");
-        person.setLastName("Updatesson");
-        pd.update(person);*/
+       /* Person update = new Person(8, "Johan", "Andersson");
+        pd.update(update);*/
 
         //DELETE
         //boolean del = pd.deleteById(3);
@@ -47,9 +44,33 @@ public class App {
         // _________________ TO DO ______________//
 
         //CREATE
-        Todo todo = new Todo(1, "Write Code", "Write some Java code", LocalDate.of(2022,12,22), false,1);
+        /*Todo todo = new Todo(3, "Design pattern", "Pattern for new app", LocalDate.of(2023,1, 28), false,2);
         todo = to_do.create(todo);
-        System.out.println("todo = " + todo);
+        System.out.println("todo = " + todo);*/
+
+        //FIND BY ID
+        /*Todo todo = to_do.findById(2);
+        System.out.println(todo);*/
+
+        //FIND BY ALL
+        /*Collection<Todo> all = to_do.findAll();
+        all.forEach(System.out::println);*/
+
+        //FIND BY DONE
+        /*Collection<Todo> done = to_do.findByDoneStatus(false);
+        done.forEach(System.out::println);*/
+
+        //FIND BY ASSIGNEE
+        /*Collection<Todo> assignee = to_do.findByAssignee(1);
+        assignee.forEach(System.out::println);*/
+
+        //FIND BY ASSAGNEE (PERSON)
+        Person person = pd.findById(7);
+        Collection<Todo> users = to_do.findByAssignee(person);
+        users.forEach(System.out::println);
+
+
+
 
 
     }
