@@ -74,7 +74,10 @@ public class App {
         unassignedTodoItems.forEach(System.out::println);*/
 
         //UPDATE
-        Todo Update = to_do.update(new Todo(9,"Update title", "update description test",LocalDate.of(2023,2,25),false,7));
+        //Todo Update = to_do.update(new Todo(9,"Update title", "update description test",LocalDate.of(2023,2,25),false,7));
+
+        //DELETE
+        boolean del = to_do.deleteById(7);
 
 
 

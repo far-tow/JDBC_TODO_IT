@@ -267,7 +267,31 @@ public class TodoItemsDaoImp implements TodoItemsDao {
         return todo;
     }
 
-    public boolean deleteById(int id) {
-        return false;
+    public boolean deleteById(int todo_id) {
+        String query = "DELETE FROM todo_item WHERE todo_id = ?";
+        int rowsAffected = 0;
+        boolean del = false;
+
+        try (
+                Connection connection = DbConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            preparedStatement.setInt(1, todo_id);
+            rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println((rowsAffected == 1) ? "Todo id: " + todo_id + " Deleted successfully" :  "Todo id: " + todo_id + " does not exist!");
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys();) {
+
+                if (rowsAffected >= 1) {
+                    del = true;
+                    System.out.println(rowsAffected + " post deleted!");
+                }
+            }
+
+        } catch (DBConnectionException | SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return del;
     }
 }

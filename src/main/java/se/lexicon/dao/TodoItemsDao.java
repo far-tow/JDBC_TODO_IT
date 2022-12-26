@@ -22,6 +22,6 @@ public interface TodoItemsDao {
 
     Todo update(Todo todo);
 
-    boolean deleteById(int id);
+    boolean deleteById(int todo_id);
 
 }
