@@ -1,5 +1,9 @@
-package se.lexicon.dao;
+package se.lexicon.dao.impl;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import se.lexicon.dao.TodoItemsDao;
 import se.lexicon.dao.dataBase.DbConnection;
 import se.lexicon.exeptions.DBConnectionException;
 import se.lexicon.model.Person;

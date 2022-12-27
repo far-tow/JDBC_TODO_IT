@@ -1,14 +1,10 @@
 package se.lexicon;
 
 import se.lexicon.dao.PeopleDao;
-import se.lexicon.dao.PeopleDaoImp;
+import se.lexicon.dao.impl.PeopleDaoImp;
 import se.lexicon.dao.TodoItemsDao;
-import se.lexicon.dao.TodoItemsDaoImp;
+import se.lexicon.dao.impl.TodoItemsDaoImp;
 import se.lexicon.model.Person;
-import se.lexicon.model.Todo;
-
-import java.time.LocalDate;
-import java.util.Collection;
 
 public class App {
 
@@ -27,8 +23,8 @@ public class App {
         all.forEach(System.out::println);*/
 
         //findById
-       /* Person  person = pd.findById(5);
-        System.out.println(person);*/
+        Person  person = pd.findById(4);
+        System.out.println(person);
 
         //findByName
        /* Collection<Person> names= pd.findByName("test");
@@ -77,7 +73,7 @@ public class App {
         //Todo Update = to_do.update(new Todo(9,"Update title", "update description test",LocalDate.of(2023,2,25),false,7));
 
         //DELETE
-        boolean del = to_do.deleteById(7);
+        boolean del = to_do.deleteById(5);
 
 
 
